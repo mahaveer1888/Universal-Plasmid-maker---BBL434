@@ -1,8 +1,6 @@
 import sys
 
-# -----------------------------
-# Read FASTA file
-# -----------------------------
+
 def read_fasta(filename):
     seq = ""
     with open(filename, "r") as f:
@@ -12,9 +10,7 @@ def read_fasta(filename):
     return seq
 
 
-# -----------------------------
-# Read Design.txt
-# -----------------------------
+
 def read_design(filename):
     mcs_sequences = []
     antibiotic_sequences = []
@@ -35,18 +31,13 @@ def read_design(filename):
     return mcs_sequences, antibiotic_sequences
 
 
-# -----------------------------
-# Default replication backbone
-# (based on plasmid biology)
-# -----------------------------
+
 ORI_V = "TTGACATGCGTACGTTAGCTAGCTAGCGTACGTAGCTAGCTAGCTA"
 REP_GENES = "ATGAAAAACCCGGGTTTAAACCCGGGTTTAAACCCGGGTTTAA"
 PRIMASE_HELICASE = "ATGGGCTACGATCGATCGTACGTAGCTAGCTAGCATCGATCG"
 
 
-# -----------------------------
-# Build plasmid
-# -----------------------------
+
 def build_plasmid(insert_seq, mcs_seqs, antibiotic_seqs):
 
     plasmid = ""
@@ -70,9 +61,7 @@ def build_plasmid(insert_seq, mcs_seqs, antibiotic_seqs):
     return plasmid
 
 
-# -----------------------------
-# Write FASTA output
-# -----------------------------
+
 def write_fasta(filename, header, sequence):
     with open(filename, "w") as f:
         f.write(f">{header}\n")
@@ -80,9 +69,7 @@ def write_fasta(filename, header, sequence):
             f.write(sequence[i:i+70] + "\n")
 
 
-# -----------------------------
-# Main
-# -----------------------------
+
 if len(sys.argv) != 3:
     print("Usage: python plasmid_maker.py Input.Fa Design.txt")
     sys.exit(1)
